@@ -106,6 +106,15 @@ do_compile () {
 		--crosstool_top=//tools/arm_compiler:toolchain \
 		--verbose_failures \
 		tensorflow/examples/label_image/...
+
+        bazel $BAZEL_FLAGS build \
+		--config=monolithic \
+		-c opt \
+		--copt=-DARM_NON_MOBILE \
+		--cpu=armeabi-v7a \
+		--crosstool_top=//tools/arm_compiler:toolchain \
+		--verbose_failures \
+		tensorflow/examples/multibox_detector/...
 }
 
 do_install () {
@@ -132,6 +141,10 @@ do_install () {
 
 	install -m 0555 \
 		${S}/bazel-bin/tensorflow/examples/label_image/label_image \
+		${D}${bindir}/${PN}-${PV}/examples
+
+	install -m 0555 \
+		${S}/bazel-bin/tensorflow/examples/multibox_detector/detect_objects \
 		${D}${bindir}/${PN}-${PV}/examples
 
 	install -m 0644 \
@@ -161,6 +174,7 @@ FILES_${PN}-dbg = " \
 FILES_${PN}-examples = " \
 	${bindir}/${PN} \
 	${bindir}/${PN}-${PV}/examples/label_image \
+	${bindir}/${PN}-${PV}/examples/detect_objects \
 	${bindir}/${PN}-${PV}/examples/grace_hopper.jpg \
 "
 
