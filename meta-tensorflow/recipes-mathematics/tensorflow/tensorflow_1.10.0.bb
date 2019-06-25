@@ -11,7 +11,7 @@ S = "${WORKDIR}/git"
 SRCREV = "656e7a2b347c3c6eb76a6c130ed4b1def567b6c1"
 
 SRC_URI = " \
-	git://github.com/tensorflow/tensorflow.git;branch=r1.10 \
+	git://github.com/mungaip/tensorflow.git;branch=inference-time \
 	file://TensorFlow-crosscompile-arm.patch \
 	file://Add-generic-arm-platform-support-in-tensorflow-workspace.patch \
 	file://Fix-all-compilation-errors-from-undefined-functions-in-j.patch \
